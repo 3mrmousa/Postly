@@ -2,7 +2,13 @@
 
 import { useFormStatus } from "react-dom";
 
-function SubmitButton() {
+function SubmitButton({
+  ButtonTitle = "Post",
+  onPending = "Posting",
+}: {
+  ButtonTitle: string;
+  onPending: string;
+}) {
   const { pending } = useFormStatus();
 
   return (
@@ -13,7 +19,7 @@ function SubmitButton() {
       px-4 py-1.5 rounded-xl transition duration-200 active:scale-95
       disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      {pending ? "Posting..." : "Post"}
+      {pending ? `${onPending}...` : ButtonTitle}
     </button>
   );
 }

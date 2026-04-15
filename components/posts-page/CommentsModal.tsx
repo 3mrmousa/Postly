@@ -1,20 +1,29 @@
 "use client";
 import { Comment, initialFormState, Post } from "@/types/types";
 import SubmitButton from "./SubmitButton";
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { addCommentAction } from "@/lib/actions/post.actions";
+import UnauthorizedModal from "./UnauthorizedModal";
 
 function CommentsModal({ post, onClose }: { post: Post; onClose: () => void }) {
+  
+  const [showUnauthorized, setShowUnauthorized] = useState(false);
   const [state, formAction] = useActionState(
     addCommentAction,
     initialFormState,
   );
+  useEffect(() => {
+    if (state.error === "Unauthorized") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setShowUnauthorized(true);
+    }
+  }, [state.error]);
 
   return (
     <>
       <div onClick={onClose} className="fixed inset-0 bg-black/50 z-40" />
       <div
-        className="size-120 fixed z-100 top-1/2 left-1/2 -translate-1/2
+        className="size-80 md:size-100 lg:size-120 fixed z-100 top-1/2 left-1/2 -translate-1/2
          bg-zinc-800 p-5 rounded-lg
          flex flex-col"
       >
@@ -68,15 +77,16 @@ function CommentsModal({ post, onClose }: { post: Post; onClose: () => void }) {
               className={`bg-transparent text-sm text-white placeholder:text-neutral-600
            outline-none border border-zinc-700 py-2 px-3 rounded-xl w-full
            ${
-             state.error
-               ? "placeholder:text-red-500"
-               : "placeholder:text-white"
+             state.error ? "placeholder:text-red-400" : "placeholder:text-white"
            }`}
             />
-            <SubmitButton />
+            <SubmitButton onPending="Commenting" ButtonTitle="Comment" />
           </form>
         </div>
       </div>
+      {showUnauthorized && (
+        <UnauthorizedModal onClose={() => setShowUnauthorized(false)} />
+      )}
     </>
   );
 }

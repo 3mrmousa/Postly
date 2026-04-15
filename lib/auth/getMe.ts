@@ -13,7 +13,19 @@ export async function getMe() {
     };
 
     await connectDB();
-    return await User.findById(decoded.userId).lean();
+    const user = await User.findById(decoded.userId).lean();
+
+    if (!user) return null;
+
+    return {
+      _id: user._id.toString(),
+      firstName: user.firstName,
+      lastName: user.lastName,
+      username: user.username,
+      email: user.email,
+      createdAt: user.createdAt?.toISOString(),
+      updatedAt: user.createdAt?.toISOString(),
+    };
   } catch {
     return null;
   }

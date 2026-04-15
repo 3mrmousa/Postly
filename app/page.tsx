@@ -6,6 +6,9 @@ import { getPosts } from "@/lib/services/post.service";
 export default async function Home() {
   const [posts, user] = await Promise.all([getPosts(), getMe()]);
 
+  console.log(user);
+  
+
   return (
     <main className="min-h-screen bg-neutral-950 flex flex-col items-center px-4 py-10 gap-6">
       <div className="w-full max-w-lg">
@@ -34,6 +37,7 @@ export default async function Home() {
               post={post}
               key={post.id}
               currentUserId={user?._id.toString()}
+              isAuth={user}
             />
           ))
         )}

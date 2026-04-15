@@ -29,3 +29,12 @@ export const initialFormState: FormState = {
   error: null,
   data: undefined,
 };
+
+export type User = {
+  createdAt: Date;
+  updatedAt: Date;
+  email: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+};
