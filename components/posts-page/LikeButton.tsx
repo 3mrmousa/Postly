@@ -1,7 +1,6 @@
 "use client";
 
 import { toggleLikeAction } from "@/lib/actions/post.actions";
-import { User } from "@/types/types";
 import { useState } from "react";
 import UnauthorizedModal from "./UnauthorizedModal";
 
@@ -14,7 +13,7 @@ function LikeButton({
   postId: string;
   likesCount: number;
   isLiked: boolean;
-  isAuth: User;
+  isAuth: boolean;
 }) {
   const [liked, setLiked] = useState(isLiked);
   const [likes, setLikes] = useState(likesCount);

@@ -1,4 +1,4 @@
-import { Post, User } from "@/types/types";
+import { Post } from "@/types/types";
 import LikeButton from "./LikeButton";
 import CommentsButton from "./CommentsButton";
 
@@ -9,7 +9,7 @@ function PostItem({
 }: {
   post: Post;
   currentUserId: string;
-  isAuth: User;
+  isAuth: boolean;
 }) {
   const isLiked = (post.likes || []).includes(currentUserId);
 

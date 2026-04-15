@@ -37,7 +37,7 @@ export default async function Home() {
               post={post}
               key={post.id}
               currentUserId={user?._id.toString()}
-              isAuth={user}
+              isAuth={!!user}
             />
           ))
         )}
