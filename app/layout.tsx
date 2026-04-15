@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/shared/Nav";
+import AnimatedBg from "@/components/shared/AnimatedBg";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,15 +30,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-screen bg-zinc-950 text-zinc-100 overflow-x-hidden">
-        <div
-          className="fixed -top-40 -left-40 w-125 h-125
-    bg-blue-500/30 rounded-full blur-[120px] pointer-events-none z-0"
-        />
-
-        <div
-          className="fixed -bottom-40 -right-40 w-125 h-125
-    bg-indigo-500/30 rounded-full blur-[120px] pointer-events-none z-0"
-        />
+        <AnimatedBg />
 
         <div className="relative z-10">
           <Nav />

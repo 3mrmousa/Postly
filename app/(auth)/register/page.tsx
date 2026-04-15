@@ -13,7 +13,7 @@ function Register() {
   );
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-950 px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center space-y-2">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-600/20 border border-blue-500/30 mb-2">
